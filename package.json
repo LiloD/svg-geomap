@@ -1,0 +1,27 @@
+{
+  "name": "svg-geomap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --progress --port 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zhizhuo Ding",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "angular-aria": "^1.5.8",
+    "angular-material": "^1.1.1",
+    "d3": "^4.2.6",
+    "jquery": "^3.1.1",
+    "lodash": "^4.16.2"
+  },
+  "devDependencies": {
+    "http-server": "^0.9.0",
+    "raw-loader": "^0.5.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.16.1"
+  }
+}
