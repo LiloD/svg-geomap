@@ -13,13 +13,14 @@ var CanvasDirective = function($compile){
                 .then(function(){
                     //rewrap    
                     var viewport = angular.element(document.querySelector('#viewport'));
+                    var svg = angular.element(document.querySelector('svg'));
 
                     function getMatrixString(SVGMatrix){
                         var str = [SVGMatrix.a, SVGMatrix.b, SVGMatrix.c, SVGMatrix.d, SVGMatrix.e, SVGMatrix.f].join(',');
                         return 'matrix(' + str + ')';
                     }
 
-                    viewport.on('dblclick', (function(){
+                    svg.on('dblclick', (function(){
                         var zoom = 1;
                         return function(event){
                             viewport.css('transition', 'transform 300ms linear');
@@ -38,7 +39,7 @@ var CanvasDirective = function($compile){
                                 dx = -dx;
                                 dy = -dy;
 
-                                ntm = viewport[0].getCTM().scale(2.0).translate(dx, dy);
+                                ntm = viewport[0].getCTM().translate(x, y).scale(2.0).translate(-x, -y);
 
                             }else{
                                 ntm = viewport[0].getCTM().multiply(viewport[0].getCTM().inverse());

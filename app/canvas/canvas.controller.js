@@ -3,7 +3,7 @@
 var d3 = require('d3');
 var _ = require('lodash');
 
-var CanvasController = function($scope, d3Helper, $q, dataGenerator, $mdSidenav){
+var CanvasController = function($scope, d3Helper, $q, dataGenerator, $mdSidenav, $window){
     var data = dataGenerator.getData();
 
     $scope.cities = {};
@@ -27,22 +27,20 @@ var CanvasController = function($scope, d3Helper, $q, dataGenerator, $mdSidenav)
     }
     
     $scope.init = function(){
+        var innerWidth = $window.innerWidth;        
+        var width = innerWidth;
         
-        var width = 960;
-        var height = 500;
-
         var viewport = d3.select('#canvas')
                     .append('svg')
-                    .attr('width', width)
-                    .attr('height', height)
                     .append('g')
-                    .attr('id', 'viewport');
+                    .attr('id', 'viewport')
 
         var path = d3.geoPath();
         
         var projection = d3.geoAlbersUsa()
-                        .scale(1000)
-                        .translate([width / 2, height / 2]);
+                        .scale(1500)
+                        .translate([width / 2, 750 / 2]);
+
 
         path.projection(projection);
 
@@ -64,7 +62,6 @@ var CanvasController = function($scope, d3Helper, $q, dataGenerator, $mdSidenav)
 
                     if(cities){
 
-                        // $scope.cities = cities;
                         $scope.cities = {};
 
                         _.forEach(cities, function(city){
@@ -130,6 +127,6 @@ var CanvasController = function($scope, d3Helper, $q, dataGenerator, $mdSidenav)
 
 };
 
-CanvasController.$inject = ['$scope', 'd3Helper', '$q', 'dataGenerator', '$mdSidenav'];
+CanvasController.$inject = ['$scope', 'd3Helper', '$q', 'dataGenerator', '$mdSidenav', '$window'];
 
 module.exports = CanvasController;
