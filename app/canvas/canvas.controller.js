@@ -41,7 +41,6 @@ var CanvasController = function($scope, d3Helper, $q, dataGenerator, $mdSidenav,
                         .scale(1500)
                         .translate([width / 2, 750 / 2]);
 
-
         path.projection(projection);
 
         return $q.all([d3Helper.json("us-states.json"), d3Helper.csv("cities.csv")])
@@ -55,9 +54,10 @@ var CanvasController = function($scope, d3Helper, $q, dataGenerator, $mdSidenav,
                             .enter()
                             .append("path")
                             .attr("d", path)
-                            .attr("stroke", "white")
-                            .attr("stroke-width", "1")
-                            .attr("fill", "#8acff0") 
+                            .attr("stroke", "black")
+                            .attr("stroke-width", "0.5")
+                            .attr("stroke-dasharray", "5")
+                            .attr('fill', 'white');
                     }
 
                     if(cities){
@@ -92,7 +92,7 @@ var CanvasController = function($scope, d3Helper, $q, dataGenerator, $mdSidenav,
                                     var m = key.split('-');
                                     return projection([$scope.cities[m[1]].lon, $scope.cities[m[1]].lat])[1];
                                 })
-                                .style('stroke', 'yellow')
+                                .style('stroke', '#AAAAAA')
                                 .style('stroke-width', '2')
                                 .style('cursor', 'pointer')
                                 .on('click', function(d){
